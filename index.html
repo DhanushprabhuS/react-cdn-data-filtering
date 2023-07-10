@@ -1,0 +1,687 @@
+
+
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React CDN</title>
+</head>
+    <body>
+    <section class="hero-wrapper mc-pd">
+        <div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 mx-auto responsive--column-l">
+                        <div class="tab-content search-fields-container pl-0 pr-0" id="myTabContent">
+                            <div class="tab-pane fade show active" id="flight0" role="tabpanel" aria-labelledby="flight-tab0">
+                                <div class="contact-form-action">
+                                    <form action="details-oneway.php" method="post" name="frm1111" class="row align-items-center mt-0 mt-lg-3">
+                                        <input type="hidden" id="depcurrentdate" name="currentdate" value="20230709">
+                                    </form>
+                                    <div class="col-lg-12 mt-md-4 mt-0 mb-md-4 mb-0 d-inline" id="notfound"></div>
+                                    <div class="col-lg-12 mt-md-4 mt-0 mb-md-4 mb-0 d-inline 20230709" id="20230709">
+                                        <!-- Searcg Engine -->
+                                        <div id="react-search"></div>
+                                        <div id="loadingDepartures"></div>
+                                        <div id="loadDeparturesdata">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col-lg-12 -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+            <script src="js/ajax-jquery.min.js"></script>
+        </div>
+    </section>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script>
+        const DATA = [{
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0400",
+            "data_order": "07501150"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0430",
+            "data_order": "15101940"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "6331ea3a69c8ec0946c50ee3",
+            "data_to_name": "Toronto - Pearson Airport - Terminal 1",
+            "data_price": 87,
+            "data_duration": "0800",
+            "data_order": "15102310"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 87,
+            "data_duration": "0810",
+            "data_order": "15102320"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0330",
+            "data_order": "07501120"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0400",
+            "data_order": "15101910"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0425",
+            "data_order": "07501215"
+        }, {
+            "data_from": "6476b00910ec0c03d83d5836",
+            "data_from_name": "Carleton Place - Ottawa",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0450",
+            "data_order": "15102000"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0405",
+            "data_order": "10151420"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0405",
+            "data_order": "10451450"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0430",
+            "data_order": "18002230"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0430",
+            "data_order": "18002230"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "6331ea3a69c8ec0946c50ee3",
+            "data_to_name": "Toronto - Pearson Airport - Terminal 1",
+            "data_price": 70,
+            "data_duration": "0510",
+            "data_order": "18002310"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 70,
+            "data_duration": "0520",
+            "data_order": "18002320"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 70,
+            "data_duration": "0525",
+            "data_order": "18002325"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0340",
+            "data_order": "10151355"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0340",
+            "data_order": "10451425"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0410",
+            "data_order": "18002210"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0410",
+            "data_order": "18002210"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0430",
+            "data_order": "10151445"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0430",
+            "data_order": "10451515"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0445",
+            "data_order": "18002245"
+        }, {
+            "data_from": "623381932db1ee07386ec9c5",
+            "data_from_name": "Ottawa (Bayshore Dr-Woodridge Cres)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0445",
+            "data_order": "18002245"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0425",
+            "data_order": "07251150"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0455",
+            "data_order": "14451940"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "6331ea3a69c8ec0946c50ee3",
+            "data_to_name": "Toronto - Pearson Airport - Terminal 1",
+            "data_price": 87,
+            "data_duration": "0825",
+            "data_order": "14452310"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 87,
+            "data_duration": "0835",
+            "data_order": "14452320"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0355",
+            "data_order": "07251120"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0425",
+            "data_order": "14451910"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0450",
+            "data_order": "07251215"
+        }, {
+            "data_from": "64767ef4b351d203faaebf28",
+            "data_from_name": "Ottawa (Kanata)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0515",
+            "data_order": "14452000"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0450",
+            "data_order": "07001150"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0420",
+            "data_order": "10001420"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0420",
+            "data_order": "10301450"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 47,
+            "data_duration": "0525",
+            "data_order": "14151940"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0500",
+            "data_order": "17302230"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6233815f2db1ee07386ec9c4",
+            "data_to_name": "Scarborough Town Centre",
+            "data_price": 50,
+            "data_duration": "0500",
+            "data_order": "17302230"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "6331ea3a69c8ec0946c50ee3",
+            "data_to_name": "Toronto - Pearson Airport - Terminal 1",
+            "data_price": 70,
+            "data_duration": "0540",
+            "data_order": "17302310"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 70,
+            "data_duration": "0550",
+            "data_order": "17302320"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "644af3f13477d805287e8672",
+            "data_to_name": "Vaughan Metropolitan Centre - Hwy 7",
+            "data_price": 70,
+            "data_duration": "0555",
+            "data_order": "17302325"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0420",
+            "data_order": "07001120"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0355",
+            "data_order": "10001355"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0355",
+            "data_order": "10301425"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 47,
+            "data_duration": "0455",
+            "data_order": "14151910"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0440",
+            "data_order": "17302210"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338178d6699e06242d158e",
+            "data_to_name": "Whitby (Go Station)",
+            "data_price": 50,
+            "data_duration": "0440",
+            "data_order": "17302210"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0515",
+            "data_order": "07001215"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0445",
+            "data_order": "10001445"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0445",
+            "data_order": "10301515"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 47,
+            "data_duration": "0545",
+            "data_order": "14152000"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0515",
+            "data_order": "17302245"
+        }, {
+            "data_from": "623381aad6699e06242d158f",
+            "data_from_name": "Ottawa (Rideau Chapters George-Sussex)",
+            "data_to": "62338155b92bdc074477d3ac",
+            "data_to_name": "Toronto (Bay St-Queen's Quay)",
+            "data_price": 50,
+            "data_duration": "0515",
+            "data_order": "17302245"
+        }];
+        const DATA1 = DATA;
+    </script>
+
+    <script type="text/babel">
+
+    
+    function FormData (props)
+    {
+
+return (
+<form action="select-trip.php?triptype=round_return&amp;frominfo=Ottawa&amp;toinfo=Toronto&amp;returndate=2023-07-10&amp;fair_id_list=62338aa56aefc50625c6c8f2%3A1&amp;to=&amp;from=&amp;daterange_single=2023-07-09&amp;fair_name_list=62338aa56aefc50625c6c8f2%3A1%3AStandard%2C&amp;trip_type=round&amp;departure_id="
+    method="post" class="trip-item" data-from="623381932db1ee07386ec9c5" data-from-name="Ottawa (Bayshore Dr-Woodridge Cres)" data-to="62338155b92bdc074477d3ac" data-to-name="Toronto (Bay St-Queen's Quay)" data-price="50" data-duration="0430" data-order="10151445"
+    name="frm0">
+    <div style={{position: 'inherit'}} class="trip-card tripcardclick my-md-3 mb-3 active">
+        <div class="row align-items-center">
+            <div style={{opacity: '1'}} class="col-md-9 col-lg-9">
+                <h6 style={{fontSize: '14px'}} class="mb-2"> {props.dataFromName}
+                    <small style={{ fontSize: '13px', color: 'green' }}>{" "+props.duration.slice(0,2)+":"+props.duration.slice(2)+" "}</small>
+                    <span style={{ fontSize: '12px' }}>(Duration)</span>
+                    <br/>
+                    <small style={{ fontSize: '13px', color: 'red' }}>{" "+props.order+" "}</small>
+                    <span style={{ fontSize: '12px' }}>(Order Id)</span>
+                    <span class="seats-available d-lg-none d-grid">Seats Available</span>
+                </h6>
+                <div class="row mt-2 pl-3 dep-flex">
+                    <div>
+                        <div class="dep-block">
+                            <span class="departure-time mr-2 ml-1">
+                                            10:15                                                                                            </span>
+                            <span class="departure-location">
+                                            {props.dataFromName}                                                                                            </span>
+                        </div>
+                        <div class="dep-block">
+                            <span class="arrival-time mr-2 ml-1">
+                                            14:45                                                                                            </span>
+                            <span class="arrival-location">
+                                            {props.dataToName}                                                                                          </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-0 my-md-2">
+                    <a data-bs-toggle="collapse" href={"#collapseactive"+props.order} role="button" aria-expanded="true" aria-controls={"collapseactive"+props.order}><span style={{ background: '#2196f3' }} class=""></span> <span class="see-details"> See Details</span> </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-12 text-left text-md-center mt-md-0 mt-2 mb-md-0 mb-0">
+                <div style={{ opacity: 1 }} class="trip-price">
+                    <span style={{ fontSize: '16px' }}>
+                                      Standard                                                                                        <b>{props.price+".00"}</b>
+                                      </span>
+                </div>
+                <div class="trip-button">
+                    <button onclick="b5()" type="submit" style={{ padding: '0px 20px', lineHeight: '27px' }} class="theme-btn  text-center">Select</button><br/>
+                    <div class="seats-available  d-lg-block d-none">Seats Available</div>
+                </div>
+            </div>
+            <div style={{ opacity: 1 }} class="col-md-12 col-lg-12 text-left">
+                <div class="transfers-section collapse mt-md-0 mt-3 mt-md-2 mb-0 " id={"collapseactive"+props.order}>
+                    <div class="row">
+                        <div class="col-md-12 mb-2 mb-md-4">
+                            <span class="connection-shec">{props.dataFromName} to {props.dataToName} (morning)  - copy (2023-07-09)</span>
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+);
+} 
+
+
+    var  preData = DATA;
+    
+    
+    
+    function App() { 
+        
+        const [isDataSelect1,setIsDataSelect1] = React.useState("none"); 
+        const [isDataSelect2,setIsDataSelect2] = React.useState("none"); 
+        const [dataFrom,setDataFrom] = React.useState(""); 
+        const [dataTo,setDataTo] = React.useState(""); 
+        const [isDuration,setIsDuration] = React.useState(false); 
+        const [isOrder,setIsOrder] = React.useState(false);
+        const [isPrice,setPrice] = React.useState(false);
+
+        const [data,setData] = React.useState(DATA);
+
+        const filterByDataFrom = (dname) => {
+
+            console.log('name : ',dname);
+            setData(DATA.filter((d)=>d["data_from_name"]===dname));
+            preData = DATA.filter((d)=>d["data_from_name"]===dname);
+        }
+
+        const filterByDataTo = (dname) => {
+
+            console.log('name : ',dname);
+            setData(preData.filter((d)=>d["data_to_name"]===dname));
+        }
+
+        const sortByDuration = () =>{
+            console.log("sorting");
+            setData(data.sort((a, b) => {
+                return a["data_duration"] - b["data_duration"];
+            }))
+            
+        }
+
+        const sortByOrder = () =>{
+            console.log("sorting");
+            setData(data.sort((a, b) => {
+                return a["data_order"] - b["data_order"];
+            }))
+            
+        }
+
+        const sortByPrice = () =>{
+            console.log("price");
+            setData(data.sort((a, b) => {
+                return a["data_price"] - b["data_price"];
+            }))
+            
+        }
+        
+
+        
+        return (
+        <div>
+            <h2>Filtering</h2>
+            <div class="d-flex align-items-center">
+
+                <select class="form-select form-select-sm mb-3 selectpicker" aria-label="Data From" value={isDataSelect1} onChange={(e)=>{setIsDataSelect1(e.target.value);setDataFrom(e.target.value);filterByDataFrom(e.target.value)}}>
+               <option value="none" selected>Select Data From</option>
+               <option value="Ottawa (Rideau Chapters George-Sussex)" >Ottawa (Rideau Chapters George-Sussex)</option>
+               <option value="Ottawa (Bayshore Dr-Woodridge Cres)" >Ottawa (Bayshore Dr-Woodridge Cres)</option>
+               <option value="Carleton Place - Ottawa" >Carleton Place - Ottawa</option>
+               <option value="Ottawa (Kanata)" >Ottawa (Kanata)</option>
+               </select>
+
+
+                <select class="form-select form-select-sm mb-3" aria-label="Data To" value={isDataSelect2} onChange={(e)=>{setIsDataSelect2(e.target.value);setDataTo(e.target.value); filterByDataTo(e.target.value)}}>
+               <option value="none" selected>Select Data To</option>
+               <option value="Whitby (Go Station)" >Whitby (Go Station)</option>
+               <option value="Scarborough Town Centre" >Scarborough Town Centre</option>
+               <option value="Toronto (Bay St-Queen's Quay)" >Toronto (Bay St-Queen's Quay)</option>
+               <option value="Toronto - Pearson Airport - Terminal 1" >Toronto - Pearson Airport - Terminal 1</option>
+               <option value="Vaughan Metropolitan Centre - Hwy 7" >Vaughan Metropolitan Centre - Hwy 7</option>
+               </select>
+            </div>
+            { isDataSelect1!=="none" || isDataSelect2 !=="none"?
+            <div>
+                SortBy :
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sort" id="flexRadioDefault1" onChange={()=>{setIsDuration(true);setIsOrder(false); setPrice(false); sortByDuration();}} />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                     Duration
+                     </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sort" id="flexRadioDefault2" onChange={()=>{setIsOrder(true); setIsDuration(false); setPrice(false); sortByOrder(); }} />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                     Order
+                     </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sort" id="flexRadioDefault3" onChange={()=>{ setPrice(true);setIsOrder(false); setIsDuration(false); sortByPrice();}} />
+                    <label class="form-check-label" for="flexRadioDefault3">
+                     Price
+                     </label>
+                </div>
+                <button type="button" class="btn btn-primary" onClick={()=>{setData(DATA);setIsDataSelect1("none");setIsDataSelect2("none");}}>Clear filter</button>
+                <div style={{ opacity: 1 }} class="trip-price">
+                    <span style={{ fontSize: '16px' }}>
+                                      Result count                                                                                        <b>{data.length}</b>
+                                      </span>
+                </div>
+            </div>:
+            <h6>No Filter applied.</h6>
+            }
+
+            {
+                isDataSelect1==="none" && isDataSelect2 ==="none"?
+                DATA.map((data)=>{
+                    return (
+                    <FormData dataFromName={data["data_from_name"]} 
+                    dataToName={data["data_to_name"]} 
+                    duration={data["data_duration"]}
+                    order={data["data_order"]}
+                    price={data["data_price"]}
+                    dataFrom={data["data_from"]}
+                    dataTo={data["data_to"]}
+                    />
+                    )
+                }
+                ):
+                data.map((data)=>{
+                return (
+                <FormData dataFromName={data["data_from_name"]} 
+                dataToName={data["data_to_name"]} 
+                duration={data["data_duration"]}
+                order={data["data_order"]}
+                price={data["data_price"]}
+                dataFrom={data["data_from"]}
+                dataTo={data["data_to"]}
+                />
+                )
+
+            })
+        }
+
+
+        </div> 
+        
+        ); 
+        
+    }
+        
+
+        
+    ReactDOM.render(<App />, document.getElementById("react-search") );
+    
+    </script>
